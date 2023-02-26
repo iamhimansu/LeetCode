@@ -1,3 +1,7 @@
-select name as Customers from Customers where not exists (select customerId from Orders where Customers.id=Orders.customerId)
-
-
+SELECT name as Customers
+FROM Customers 
+WHERE NOT exists (
+  SELECT customerId
+  FROM Orders 
+  WHERE Customers.id=Orders.customerId
+)
