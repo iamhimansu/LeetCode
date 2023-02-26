@@ -43,4 +43,30 @@ SELECT (
           FROM Employee WHERE 
                         (departmentId, salary) 
                         IN 
-                        (SELECT departmentId, MAX(DISTINCT salary) as m FROM Employee GROUP BY departmentId);
+                        (SELECT departmentId, MAX(DISTINCT salary) as m FROM Employee GROUP BY departmentId
+       );
+       
+       
+       
+       
+##OPTIMISED
+FROM SOLUTIONS
+# Write your MySQL query statement below
+with x as (
+select
+name
+, departmentId
+, salary
+,(rank() over (partition by departmentId order by salary desc)) as rowe
+from
+employee)
+select
+d.name as Department
+, x.name as Employee
+, x.salary as Salary
+from
+x join department d on x.departmentId = d.id
+where
+rowe=1
+
+
