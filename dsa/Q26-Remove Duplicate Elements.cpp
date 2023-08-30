@@ -14,6 +14,22 @@ need to do the following things:
 unique elements in the order they were present in nums initially. The remaining
 elements of nums are not important as well as the size of nums. Return k.
 */
+/**
+ * OPTIMAL SOLUTION
+ * class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int j = 1;
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] != nums[i - 1]){
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+};
+ */
 using namespace std;
 class Solution {
 public:
@@ -22,7 +38,6 @@ public:
     for (auto x : nums) {
       if (x != nums.at(i)) {
         nums.at(++i) = x;
-
       }
     }
     for (auto z : nums) {
